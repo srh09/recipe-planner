@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "recipe-planner",
+      "public": "dist/recipe-planner",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

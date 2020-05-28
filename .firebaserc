@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "recipe-planner-f9e52": {
+      "hosting": {
+        "recipe-planner": [
+          "recipe-planner-f9e52"
+        ]
+      }
+    }
+  }
+}
