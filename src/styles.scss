@@ -101,8 +101,8 @@ $custom-red: (
 );
 
 $recipe-planner-primary: mat-palette($custom-blue);
-$recipe-planner-accent: mat-palette($custom-orange);
-$recipe-planner-warn: mat-palette($custom-red);
+$recipe-planner-accent: mat-palette($mat-orange, A200, A100, A400);
+$recipe-planner-warn: mat-palette($mat-red);
 
 $recipe-planner-theme: mat-light-theme($recipe-planner-primary, $recipe-planner-accent, $recipe-planner-warn);
 
