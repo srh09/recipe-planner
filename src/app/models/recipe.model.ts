@@ -7,8 +7,8 @@ export class Recipe {
         public description?: string,
         public instructions?: string,
         public notes?: string,
+        public ingredients?: (Ingredient|Recipe)[],
         public imagePath?: string,
-        public amount?: number,
-        public ingredients?: (Ingredient|Recipe)[]
+        public amount?: number
     ) { }
 }

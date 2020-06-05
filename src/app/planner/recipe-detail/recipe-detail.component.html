@@ -1,0 +1,25 @@
+<mat-card>
+    <form [formGroup]="recipeDetailForm" (ngSubmit)="onSubmit()">
+        <mat-form-field [color]="name.valid && 'accent'">
+            <input matInput formControlName="name" type="text" placeholder="Name" autocomplete="off">
+            <mat-error *ngIf="name.invalid && name.touched">Enter a valid Name</mat-error>
+        </mat-form-field>
+        <mat-form-field [color]="servings.valid && 'accent'">
+            <input matInput formControlName="servings" type="text" placeholder="Servings" autocomplete="off">
+            <mat-error *ngIf="servings.invalid && servings.touched">Enter a number between 1-99</mat-error>
+        </mat-form-field>
+        <mat-form-field [color]="description.valid && 'accent'">
+            <textarea matInput formControlName="description" type="text" placeholder="Description" rows="5" autocomplete="off"></textarea>
+        </mat-form-field>
+        <mat-form-field [color]="instructions.valid && 'accent'">
+            <input matInput formControlName="instructions" type="text" placeholder="Instructions" autocomplete="off">
+        </mat-form-field>
+        <mat-form-field [color]="notes.valid && 'accent'">
+            <input matInput formControlName="notes" type="text" placeholder="Notes" autocomplete="off">
+        </mat-form-field>
+
+    </form>
+</mat-card>
+<mat-card>
+    <app-file-upload></app-file-upload>
+</mat-card>

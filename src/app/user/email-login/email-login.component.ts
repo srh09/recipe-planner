@@ -28,16 +28,6 @@ export class EmailLoginComponent implements OnInit {
     this.type = value
   }
 
-  get isLogin() { return this.type === 'login' }
-  get isSignUp() { return this.type === 'signup' }
-  get isPasswordReset() { return this.type === 'reset' }
-  get email() { return this.form.get('email') }
-  get password() { return this.form.get('password') }
-  get passwordConfirm() { return this.form.get('passwordConfirm') }
-  get passwordDoesMatch() {
-    return this.type !== 'signup' ? true : this.password.value === this.passwordConfirm.value
-  }
-
   async onSubmit() {
     this.loading = true
     const email = this.email.value
@@ -58,5 +48,15 @@ export class EmailLoginComponent implements OnInit {
       this.serverMessage = error
     }
     this.loading = false
+  }
+
+  get isLogin() { return this.type === 'login' }
+  get isSignUp() { return this.type === 'signup' }
+  get isPasswordReset() { return this.type === 'reset' }
+  get email() { return this.form.get('email') }
+  get password() { return this.form.get('password') }
+  get passwordConfirm() { return this.form.get('passwordConfirm') }
+  get passwordDoesMatch() {
+    return this.type !== 'signup' ? true : this.password.value === this.passwordConfirm.value
   }
 }
