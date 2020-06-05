@@ -15,6 +15,12 @@ export class DropzoneDirective {
     this.hovered.emit(false)
   }
 
+  @HostListener('dragover', ['$event'])
+  onDragOver($event) {
+    $event.preventDefault()
+    this.hovered.emit(true)
+  }
+
   @HostListener('dragleave', ['$event'])
   onDragLeave($event) {
     $event.preventDefault()

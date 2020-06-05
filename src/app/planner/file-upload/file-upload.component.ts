@@ -26,7 +26,8 @@ export class FileUploadComponent implements OnInit {
     this.isHovering = event
   }
 
-  onDrop(file: File) {
+  onDrop(files: FileList) {
+    let file = files[0]
     this.startUpload(file)
   }
 
