@@ -1,5 +1,11 @@
 <mat-card>
-  <div class="dropzone" appDropzone (hovered)="toggleHover($event)" (dropped)="onDrop($event)" [class.hovering]="isHovering">
+  <div
+    class="dropzone"
+    appDropzone
+    (hovered)="toggleHover($event)"
+    (dropped)="onDrop($event)"
+    [class.hovering]="isHovering"
+  >
     <h3>Recipe Image</h3>
     <p>Drag and Drop a File</p>
   </div>

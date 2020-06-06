@@ -1,26 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from "@angular/core"
+import { AngularFireAuth } from "@angular/fire/auth"
+import { FormBuilder, FormGroup, Validators } from "@angular/forms"
 
 @Component({
-  selector: 'app-email-login',
-  templateUrl: './email-login.component.html',
-  styleUrls: ['./email-login.component.scss']
+  selector: "app-email-login",
+  templateUrl: "./email-login.component.html",
+  styleUrls: ["./email-login.component.scss"],
 })
 export class EmailLoginComponent implements OnInit {
-
   form: FormGroup
-  type: 'login' | 'signup' | 'reset' = 'signup'
+  type: "login" | "signup" | "reset" = "signup"
   loading = false
   serverMessage: string
 
-  constructor(private angularFireAuth: AngularFireAuth, private formBuilder: FormBuilder) { }
+  constructor(private angularFireAuth: AngularFireAuth, private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      passwordConfirm: ['', []]
+      email: ["", [Validators.required, Validators.email]],
+      password: ["", [Validators.required, Validators.minLength(6)]],
+      passwordConfirm: ["", []],
     })
   }
 
@@ -40,9 +39,9 @@ export class EmailLoginComponent implements OnInit {
         await this.angularFireAuth.createUserWithEmailAndPassword(email, password)
       } else if (this.isPasswordReset) {
         await this.angularFireAuth.sendPasswordResetEmail(email)
-        this.serverMessage = 'Check your email'
+        this.serverMessage = "Check your email"
       } else {
-        this.serverMessage = 'Something went wrong'
+        this.serverMessage = "Something went wrong"
       }
     } catch (error) {
       this.serverMessage = error
@@ -50,13 +49,25 @@ export class EmailLoginComponent implements OnInit {
     this.loading = false
   }
 
-  get isLogin() { return this.type === 'login' }
-  get isSignUp() { return this.type === 'signup' }
-  get isPasswordReset() { return this.type === 'reset' }
-  get email() { return this.form.get('email') }
-  get password() { return this.form.get('password') }
-  get passwordConfirm() { return this.form.get('passwordConfirm') }
+  get isLogin() {
+    return this.type === "login"
+  }
+  get isSignUp() {
+    return this.type === "signup"
+  }
+  get isPasswordReset() {
+    return this.type === "reset"
+  }
+  get email() {
+    return this.form.get("email")
+  }
+  get password() {
+    return this.form.get("password")
+  }
+  get passwordConfirm() {
+    return this.form.get("passwordConfirm")
+  }
   get passwordDoesMatch() {
-    return this.type !== 'signup' ? true : this.password.value === this.passwordConfirm.value
+    return this.type !== "signup" ? true : this.password.value === this.passwordConfirm.value
   }
 }
