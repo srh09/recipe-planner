@@ -13,6 +13,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatProgressBarModule } from "@angular/material/progress-bar";
 
 import { ShellComponent } from './shell/shell.component';
 
@@ -20,10 +21,11 @@ const components = [ShellComponent];
 
 const modules = [
   CommonModule,
+  LayoutModule,
+  RouterModule,
   MatButtonModule,
   MatToolbarModule,
   MatIconModule,
-  LayoutModule,
   MatSidenavModule,
   MatListModule,
   MatMenuModule,
@@ -32,7 +34,7 @@ const modules = [
   MatFormFieldModule,
   MatInputModule,
   MatSnackBarModule,
-  RouterModule,
+  MatProgressBarModule
 ];
 
 @NgModule({

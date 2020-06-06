@@ -1,26 +1,46 @@
-.dropzone { 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column; 
-    min-width: 80vw;
-    font-weight: 200;
-    height: 300px;
-    border: 2px dashed #f16624;
-    border-radius: 5px;
-    background: white;
-    margin: 10px 0;
-  
-    &.hovering {
-        border: 2px solid #f16624;
-        color: #dadada !important;
-    }
-  
-    .file-label {
-        font-size: 1.2em;
-    }
+mat-card {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+mat-progress-bar {
+  margin: 10;
+}
+
+.dropzone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-weight: 200;
+  height: 200px;
+  border: 2px dashed #f16624;
+  border-radius: 5px;
+  background: white;
+  margin: 10px 0;
+
+  &.hovering {
+    border: 2px solid #f16624;
+    color: #dadada !important;
   }
-  
-  progress::-webkit-progress-value {
-    transition: width 0.1s ease;
+
+  .file-label {
+    font-size: 1.2em;
   }
+}
+
+.imageContainer {
+  margin: 10px;
+}
+
+img {
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+progress::-webkit-progress-value {
+  transition: width 0.1s ease;
+}

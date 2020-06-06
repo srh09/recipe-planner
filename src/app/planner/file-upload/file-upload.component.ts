@@ -38,7 +38,7 @@ export class FileUploadComponent implements OnInit {
       console.error('unsupported file type :( ')
     }
 
-    const path = `test/${new Date().getTime()}_${file.name}`
+    const path = `recipe_image/${new Date().getTime()}_${file.name}`
     const fileRef = this.storage.ref(path)
     
     this.task = this.storage.upload(path, file)
@@ -49,10 +49,6 @@ export class FileUploadComponent implements OnInit {
         this.firestore.collection('files').add( { downloadURL: this.downloadURL, path } )
       })
     )
-  }
-
-  isActive(snapshot) {
-    return snapshot.state === 'running' && snapshot.bytesTransferred < snapshot.totalBytes
   }
 
 }

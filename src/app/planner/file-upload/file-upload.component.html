@@ -1,31 +1,17 @@
-<div
-  class="dropzone"
-  appDropzone
-  (hovered)="toggleHover($event)"
-  (dropped)="onDrop($event)"
-  [class.hovering]="isHovering">
-
-  <h3>AngularFire DropZone</h3>
-  <p>Drag and Drop a File</p>
-</div>
-
-<div *ngIf="percentage | async as pct">
-  <progress [value]="pct" max="100"></progress>
-  {{ pct | number }}%
-</div>
-
-<div *ngIf="snapshot | async as snap">
-  {{ snap.bytesTransferred }} of {{ snap.totalBytes }}
-
-  <div *ngIf="downloadURL as url">
-    <h3>Results!</h3>
-    <img [src]="url" /><br />
-    <a [href]="url" target="_blank" rel="noopener">Download Me!</a>
+<mat-card>
+  <div class="dropzone" appDropzone (hovered)="toggleHover($event)" (dropped)="onDrop($event)" [class.hovering]="isHovering">
+    <h3>Recipe Image</h3>
+    <p>Drag and Drop a File</p>
   </div>
 
-  <button (click)="task.pause()" [disabled]="!isActive(snap)">Pause</button>
-  <button (click)="task.cancel()" [disabled]="!isActive(snap)">Cancel</button>
-  <button (click)="task.resume()" [disabled]="!(snap?.state === 'paused')">
-    Resume
-  </button>
-</div>
+  <div *ngIf="percentage | async as pct">
+    <mat-progress-bar [value]="pct" max="100"></mat-progress-bar>
+  </div>
+
+  <div *ngIf="snapshot | async as snap">
+    <div class="imageContainer" *ngIf="downloadURL as url">
+      <img mat-card-image [src]="url" />
+      <a [href]="url" target="_blank" rel="noopener"></a>
+    </div>
+  </div>
+</mat-card>
