@@ -5,8 +5,13 @@ mat-card {
   margin: 0 auto;
 }
 
-mat-progress-bar {
-  margin: 10;
+img {
+  background-image: url("/assets/recipe_placeholder.svg");
+  max-height: 200px;
+}
+
+#progressBar {
+  margin: 10px;
 }
 
 .dropzone {
@@ -32,7 +37,7 @@ mat-progress-bar {
 }
 
 .imageContainer {
-  margin: 10px;
+  margin: 20px 10px 0px 10px;
 }
 
 img {

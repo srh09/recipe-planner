@@ -5,25 +5,10 @@ mat-card {
   margin: 0 auto;
 }
 
-mat-form-field {
-  width: 100%;
-  margin-bottom: 16px;
-}
-
-.server-error {
-  margin: 8px 0;
-}
-
-input {
-  height: 2em;
-  div.mat-form-field-infix {
-    padding: 0.3em 0;
-    input.mat-input-element {
-      vertical-align: top;
-    }
+@media only screen and (min-width: 1640px) {
+  main {
+    display: grid;
+    grid-template-columns: 33% 33% 33% auto;
+    grid-template-areas: "general instructions ingredients";
   }
-}
-
-div.mat-form-field-wrapper {
-  padding-bottom: 1.15em;
 }
