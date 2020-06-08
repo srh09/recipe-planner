@@ -1,17 +1,11 @@
-mat-card {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-  margin: 0 auto;
-}
-
 img {
-  background-image: url("/assets/recipe_placeholder.svg");
-  max-height: 200px;
+  max-height: 175px;
+  margin: 8px auto 8px auto;
+  border-radius: 5px;
 }
 
-#progressBar {
-  margin: 10px;
+.image-error {
+  margin: 8px 0;
 }
 
 .dropzone {
@@ -36,14 +30,8 @@ img {
   }
 }
 
-.imageContainer {
-  margin: 20px 10px 0px 10px;
-}
-
-img {
-  display: flex;
-  justify-content: center;
-  border-radius: 5px;
+:host {
+  text-align: center;
 }
 
 progress::-webkit-progress-value {
