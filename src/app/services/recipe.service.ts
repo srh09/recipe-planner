@@ -14,7 +14,7 @@ export class RecipeService {
       3,
       "This is a description of Pizza, text will go here...",
       "recipe pizza notes will go on this line",
-      ["step one text", "step two text"]
+      ["step one text", "step two text", "step three instructions"]
     ),
   ]
 

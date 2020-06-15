@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core"
 import { FormGroup, Validators, FormBuilder, FormArray, FormControl } from "@angular/forms"
-import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout"
+import { RecipeService } from "src/app/services/recipe.service"
+import { Recipe } from "src/app/models/recipe.model"
 
 @Component({
   selector: "app-recipe-detail",
@@ -8,17 +9,33 @@ import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout"
   styleUrls: ["./recipe-detail.component.scss"],
 })
 export class RecipeDetailComponent implements OnInit {
+  recipe: Recipe
   recipeDetailForm: FormGroup
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private recipeService: RecipeService) {}
 
   ngOnInit() {
+    this.recipe = this.recipeService.getRecipe(0)
+    this.initializeRecipeDetailForm()
+  }
+
+  private initializeRecipeDetailForm() {
+    let recipeInstructions = this.formBuilder.array([])
+    for (let instruction of this.recipe.instructions) {
+      recipeInstructions.push(
+        this.formBuilder.group({
+          instruction: this.formBuilder.control(instruction),
+          temp: this.formBuilder.control("tempString"),
+        })
+      )
+    }
+
     this.recipeDetailForm = this.formBuilder.group({
-      name: [null, [Validators.required]],
-      servings: [null, [Validators.required, Validators.pattern("^[1-9][0-9]?$")]],
-      description: [null],
-      instructions: [[]],
-      notes: [null],
+      name: [this.recipe.name, [Validators.required]],
+      servings: [this.recipe.servings, [Validators.required, Validators.pattern("^[1-9][0-9]?$")]],
+      description: [this.recipe.description],
+      notes: [this.recipe.notes],
+      instructions: recipeInstructions,
     })
   }
 
@@ -43,10 +60,11 @@ export class RecipeDetailComponent implements OnInit {
   get description() {
     return this.recipeDetailForm.get("description")
   }
-  get instructions() {
-    return this.recipeDetailForm.get("instructions")
-  }
   get notes() {
     return this.recipeDetailForm.get("notes")
+  }
+
+  get instructionControls() {
+    return (<FormArray>this.recipeDetailForm.get("instructions")).controls
   }
 }

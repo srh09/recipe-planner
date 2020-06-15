@@ -23,13 +23,13 @@
     </mat-form-field>
     <app-file-upload></app-file-upload>
     <div formArrayName="instructions">
-      <div>
+      <div *ngFor="let instructionControl of instructionControls; let i = index" [formGroupName]="i">
         <mat-form-field [color]="description.valid && 'accent'">
           <textarea
             matInput
             formControlName="instruction"
             type="text"
-            placeholder="Description"
+            placeholder="Instruction"
             rows="3"
             autocomplete="off"
           ></textarea>
