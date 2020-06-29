@@ -8,12 +8,16 @@ mat-form-field {
   width: 100%;
 }
 
-#name {
+mat-card {
+  margin-top: 5px;
+}
+
+.long-input {
   width: 70%;
   margin-right: 10%;
 }
 
-#servings {
+.short-input {
   width: 20%;
 }
 

@@ -1,10 +1,10 @@
 <main>
   <form [formGroup]="recipeDetailForm" (ngSubmit)="onSubmit()">
-    <mat-form-field id="name" [color]="name.valid && 'accent'">
+    <mat-form-field class="long-input" [color]="name.valid && 'accent'">
       <input matInput formControlName="name" type="text" placeholder="Name" autocomplete="off" />
       <mat-error *ngIf="name.invalid && name.touched">Enter a valid Name</mat-error>
     </mat-form-field>
-    <mat-form-field id="servings" [color]="servings.valid && 'accent'">
+    <mat-form-field class="short-input" [color]="servings.valid && 'accent'">
       <input matInput formControlName="servings" type="text" placeholder="Servings" autocomplete="off" />
       <mat-error *ngIf="servings.invalid && servings.touched">Enter a number between 1-99</mat-error>
     </mat-form-field>
@@ -23,18 +23,52 @@
     </mat-form-field>
     <app-file-upload></app-file-upload>
     <div formArrayName="instructions">
-      <div *ngFor="let instructionControl of instructionControls; let i = index" [formGroupName]="i">
-        <mat-form-field [color]="description.valid && 'accent'">
-          <textarea
-            matInput
-            formControlName="instruction"
-            type="text"
-            placeholder="Instruction"
-            rows="3"
-            autocomplete="off"
-          ></textarea>
-        </mat-form-field>
+      <div *ngFor="let instructionControl of instructions.controls; let i = index" [formGroupName]="i">
+        <mat-card>
+          <mat-form-field [color]="description.valid && 'accent'">
+            <textarea
+              matInput
+              formControlName="instruction"
+              type="text"
+              placeholder="Instruction"
+              rows="3"
+              autocomplete="off"
+            ></textarea>
+          </mat-form-field>
+          <button mat-mini-fab color="accent" type="button" (click)="onInsertInstruction(i)">
+            <mat-icon>add</mat-icon>
+          </button>
+          <button mat-mini-fab color="accent" type="button" (click)="onDeleteInstruction(i)">
+            <mat-icon>clear</mat-icon>
+          </button>
+        </mat-card>
       </div>
+      <button mat-raised-button type="button" class="btn btn-success btn-spacing" (click)="onPushInstruction()">
+        Add Instruction
+      </button>
     </div>
+
+    <div formArrayName="ingredients">
+      <div *ngFor="let ingredientControl of ingredients.controls; let i = index" [formGroupName]="i">
+        <mat-card>
+          <mat-form-field [color]="description.valid && 'accent'" class="long-input">
+            <input matInput formControlName="name" type="text" placeholder="Ingredient" autocomplete="off" />
+          </mat-form-field>
+          <mat-form-field [color]="description.valid && 'accent'" class="short-input">
+            <input matInput formControlName="quantity" type="text" placeholder="Quantity" autocomplete="off" />
+          </mat-form-field>
+          <button mat-mini-fab color="accent" type="button" (click)="onInsertIngredient()">
+            <mat-icon>add</mat-icon>
+          </button>
+          <button mat-mini-fab color="accent" type="button" (click)="onDeleteIngredient(i)">
+            <mat-icon>clear</mat-icon>
+          </button>
+        </mat-card>
+      </div>
+      <button mat-raised-button type="button" class="btn btn-success btn-spacing" (click)="onPushIngredient()">
+        Add Ingredient
+      </button>
+    </div>
+    <button mat-raised-button type="submit" [disabled]="!recipeDetailForm.valid">Save</button>
   </form>
 </main>

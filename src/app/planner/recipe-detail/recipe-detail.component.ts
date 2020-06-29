@@ -6,7 +6,7 @@ import { Recipe } from "src/app/models/recipe.model"
 @Component({
   selector: "app-recipe-detail",
   templateUrl: "./recipe-detail.component.html",
-  styleUrls: ["./recipe-detail.component.scss"],
+  styleUrls: ["./recipe-detail.component.scss"]
 })
 export class RecipeDetailComponent implements OnInit {
   recipe: Recipe
@@ -19,13 +19,71 @@ export class RecipeDetailComponent implements OnInit {
     this.initializeRecipeDetailForm()
   }
 
+  onPushInstruction() {
+    this.instructions.push(
+      this.formBuilder.group({
+        instruction: this.formBuilder.control(null, [Validators.required])
+      })
+    )
+  }
+
+  onInsertInstruction(index: number) {
+    this.instructions.insert(
+      index,
+      this.formBuilder.group({
+        instruction: this.formBuilder.control(null, [Validators.required])
+      })
+    )
+  }
+
+  onDeleteInstruction(index: number) {
+    this.instructions.removeAt(index)
+  }
+
+  onPushIngredient() {
+    this.ingredients.push(
+      this.formBuilder.group({
+        ingredient: this.formBuilder.control(null, [Validators.required]),
+        quantity: this.formBuilder.control(null, [Validators.required])
+      })
+    )
+  }
+
+  onInsertIngredient(index: number) {
+    this.ingredients.insert(
+      index,
+      this.formBuilder.group({
+        name: this.formBuilder.control(null, [Validators.required]),
+        quantity: this.formBuilder.control(null, [Validators.required])
+      })
+    )
+  }
+
+  onDeleteIngredient(index: number) {
+    this.ingredients.removeAt(index)
+  }
+
+  onSubmit() {
+    console.log(this.recipeDetailForm.value)
+  }
+
   private initializeRecipeDetailForm() {
-    let recipeInstructions = this.formBuilder.array([])
+    let instructionsArray = this.formBuilder.array([])
+    let ingredientsArray = this.formBuilder.array([])
+
     for (let instruction of this.recipe.instructions) {
-      recipeInstructions.push(
+      instructionsArray.push(
         this.formBuilder.group({
-          instruction: this.formBuilder.control(instruction),
-          temp: this.formBuilder.control("tempString"),
+          instruction: this.formBuilder.control(instruction, [Validators.required])
+        })
+      )
+    }
+
+    for (let ingredient of this.recipe.ingredients) {
+      ingredientsArray.push(
+        this.formBuilder.group({
+          name: this.formBuilder.control(ingredient.name, [Validators.required]),
+          quantity: this.formBuilder.control(ingredient.quantity, [Validators.required])
         })
       )
     }
@@ -35,20 +93,9 @@ export class RecipeDetailComponent implements OnInit {
       servings: [this.recipe.servings, [Validators.required, Validators.pattern("^[1-9][0-9]?$")]],
       description: [this.recipe.description],
       notes: [this.recipe.notes],
-      instructions: recipeInstructions,
+      instructions: instructionsArray,
+      ingredients: ingredientsArray
     })
-  }
-
-  onAddInstruction() {
-    ;(<FormArray>this.recipeDetailForm.get("instructions")).push(new FormControl(null))
-  }
-
-  onDeleteInstruction(index: number) {
-    ;(<FormArray>this.recipeDetailForm.get("instructions")).removeAt(index)
-  }
-
-  onSubmit() {
-    console.log(this.recipeDetailForm.value)
   }
 
   get name() {
@@ -63,8 +110,10 @@ export class RecipeDetailComponent implements OnInit {
   get notes() {
     return this.recipeDetailForm.get("notes")
   }
-
-  get instructionControls() {
-    return (<FormArray>this.recipeDetailForm.get("instructions")).controls
+  get instructions() {
+    return <FormArray>this.recipeDetailForm.get("instructions")
+  }
+  get ingredients() {
+    return <FormArray>this.recipeDetailForm.get("ingredients")
   }
 }
