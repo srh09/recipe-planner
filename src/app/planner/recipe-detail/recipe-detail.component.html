@@ -57,7 +57,7 @@
           <mat-form-field [color]="description.valid && 'accent'" class="short-input">
             <input matInput formControlName="quantity" type="text" placeholder="Quantity" autocomplete="off" />
           </mat-form-field>
-          <button mat-mini-fab color="accent" type="button" (click)="onInsertIngredient()">
+          <button mat-mini-fab color="accent" type="button" (click)="onInsertIngredient(i)">
             <mat-icon>add</mat-icon>
           </button>
           <button mat-mini-fab color="accent" type="button" (click)="onDeleteIngredient(i)">
