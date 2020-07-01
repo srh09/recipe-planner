@@ -1,26 +1,30 @@
 <div class="upload-container">
-  <div
-    *ngIf="!(isHandset$ | async)"
-    class="dropzone"
-    appDropzone
-    (hovered)="toggleHover($event)"
-    (dropped)="startUpload($event)"
-    [class.hovering]="isHovering"
-  >
-    <h3>Recipe Image</h3>
-    <p>Drag and Drop a File</p>
-    <p>or</p>
-    <button type="button" mat-stroked-button (click)="fileInput.click()">Choose File</button>
-    <input #fileInput hidden type="file" (change)="onSelectFile($event.target.files)" />
-    <mat-error *ngIf="imageMessage" class="image-error">{{ imageMessage }}</mat-error>
-    <img *ngIf="imageURL" [src]="imageURL" />
+  <div class="desktop" *ngIf="!(isHandset$ | async)">
+    <div
+      class="dropzone"
+      appDropzone
+      (hovered)="toggleHover($event)"
+      (dropped)="startUpload($event)"
+      [class.hovering]="isHovering"
+    >
+      <h3>Recipe Image</h3>
+      <p>Drag and Drop a File</p>
+      <p>or</p>
+      <button type="button" mat-stroked-button (click)="fileInput.click()">Choose File</button>
+      <input #fileInput hidden type="file" (change)="onSelectFile($event.target.files)" />
+      <mat-error *ngIf="imageMessage" class="image-error">{{ imageMessage }}</mat-error>
+    </div>
+    <div class="display-zone">
+      <img *ngIf="imageURL" [src]="imageURL" />
+    </div>
   </div>
-
-  <div *ngIf="isHandset$ | async" class="image-selection">
-    <button type="button" mat-raised-button (click)="fileInput.click()">Choose Recipe Image</button>
-    <input #fileInput hidden type="file" (change)="onSelectFile($event.target.files)" />
-    <mat-error *ngIf="imageMessage" class="image-error">{{ imageMessage }}</mat-error>
-    <img *ngIf="imageURL" [src]="imageURL" />
+  <div class="handset" *ngIf="isHandset$ | async">
+    <div class="image-selection">
+      <button type="button" mat-raised-button (click)="fileInput.click()">Choose Recipe Image</button>
+      <input #fileInput hidden type="file" (change)="onSelectFile($event.target.files)" />
+      <mat-error *ngIf="imageMessage" class="image-error">{{ imageMessage }}</mat-error>
+      <img *ngIf="imageURL" [src]="imageURL" />
+    </div>
   </div>
 
   <!-- <div id="progressBar" *ngIf="percentage | async">

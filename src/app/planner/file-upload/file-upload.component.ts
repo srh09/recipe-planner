@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core"
+import { Component, OnInit, Input } from "@angular/core"
 import { AngularFireUploadTask } from "@angular/fire/storage/task"
 import { Observable } from "rxjs"
 import { AngularFireStorage } from "@angular/fire/storage"
@@ -9,7 +9,7 @@ import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout"
 @Component({
   selector: "app-file-upload",
   templateUrl: "./file-upload.component.html",
-  styleUrls: ["./file-upload.component.scss"],
+  styleUrls: ["./file-upload.component.scss"]
 })
 export class FileUploadComponent implements OnInit {
   fileReader = new FileReader()
@@ -17,12 +17,12 @@ export class FileUploadComponent implements OnInit {
     map((result) => result.matches),
     shareReplay()
   )
+  @Input() imageURL: ArrayBuffer | string
   task: AngularFireUploadTask
   percentage: Observable<number>
   snapshot: Observable<any>
   downloadURL: Observable<string>
   isHovering: boolean
-  imageURL: ArrayBuffer | string
   imageMessage: string
 
   constructor(

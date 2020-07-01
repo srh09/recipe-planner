@@ -36,7 +36,8 @@ export class RecipeService {
         "Spoon into two 1-pint jars with tight-fitting lids or two small bowls and cover tightly.",
         "Refrigerate overnight and remove the vanilla bean before serving."
       ],
-      [this.ing[3], this.ing[4], this.ing[5], this.ing[6], this.ing[7], this.ing[8], this.ing[9], this.ing[10]]
+      [this.ing[3], this.ing[4], this.ing[5], this.ing[6], this.ing[7], this.ing[8], this.ing[9], this.ing[10]],
+      "assets/summertime_oatmeal.jpg"
     ),
     new Recipe(
       "Pizza",

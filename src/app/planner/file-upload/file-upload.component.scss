@@ -30,6 +30,19 @@ img {
   }
 }
 
+.display-zone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-weight: 200;
+  height: 200px;
+  border: 2px solid #000000;
+  border-radius: 5px;
+  background: white;
+  margin: 10px 0;
+}
+
 :host {
   text-align: center;
 }
