@@ -11,7 +11,9 @@
     <p>Drag and Drop a File</p>
     <p>or</p>
     <button type="button" mat-stroked-button (click)="fileInput.click()">Choose File</button>
-    <input #fileInput hidden type="file" (change)="startUpload($event.target.files)" />
+    <input #fileInput hidden type="file" (change)="onSelectFile($event.target.files)" />
+    <mat-error *ngIf="imageMessage" class="image-error">{{ imageMessage }}</mat-error>
+    <img *ngIf="imageURL" [src]="imageURL" />
   </div>
 
   <div *ngIf="isHandset$ | async" class="image-selection">

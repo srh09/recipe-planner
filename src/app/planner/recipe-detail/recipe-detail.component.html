@@ -1,74 +1,95 @@
 <main>
   <form [formGroup]="recipeDetailForm" (ngSubmit)="onSubmit()">
-    <mat-form-field class="long-input" [color]="name.valid && 'accent'">
-      <input matInput formControlName="name" type="text" placeholder="Name" autocomplete="off" />
-      <mat-error *ngIf="name.invalid && name.touched">Enter a valid Name</mat-error>
-    </mat-form-field>
-    <mat-form-field class="short-input" [color]="servings.valid && 'accent'">
-      <input matInput formControlName="servings" type="text" placeholder="Servings" autocomplete="off" />
-      <mat-error *ngIf="servings.invalid && servings.touched">Enter a number between 1-99</mat-error>
-    </mat-form-field>
-    <mat-form-field [color]="description.valid && 'accent'">
-      <textarea
-        matInput
-        formControlName="description"
-        type="text"
-        placeholder="Description"
-        rows="4"
-        autocomplete="off"
-      ></textarea>
-    </mat-form-field>
-    <mat-form-field [color]="notes.valid && 'accent'">
-      <textarea matInput formControlName="notes" type="text" placeholder="Notes" rows="4" autocomplete="off"></textarea>
-    </mat-form-field>
-    <app-file-upload></app-file-upload>
-    <div formArrayName="instructions">
-      <div *ngFor="let instructionControl of instructions.controls; let i = index" [formGroupName]="i">
-        <mat-card>
-          <mat-form-field [color]="description.valid && 'accent'">
-            <textarea
-              matInput
-              formControlName="instruction"
-              type="text"
-              placeholder="Instruction"
-              rows="3"
-              autocomplete="off"
-            ></textarea>
-          </mat-form-field>
-          <button mat-mini-fab color="accent" type="button" (click)="onInsertInstruction(i)">
-            <mat-icon>add</mat-icon>
-          </button>
-          <button mat-mini-fab color="accent" type="button" (click)="onDeleteInstruction(i)">
-            <mat-icon>clear</mat-icon>
-          </button>
-        </mat-card>
+    <section>
+      <mat-form-field class="long-input" [color]="name.valid && 'accent'">
+        <input matInput formControlName="name" type="text" placeholder="Name" autocomplete="off" />
+        <mat-error *ngIf="name.invalid && name.touched">Enter a valid Name</mat-error>
+      </mat-form-field>
+      <mat-form-field class="short-input" [color]="servings.valid && 'accent'">
+        <input matInput formControlName="servings" type="text" placeholder="Servings" autocomplete="off" />
+        <mat-error *ngIf="servings.invalid && servings.touched">Enter a number between 1-99</mat-error>
+      </mat-form-field>
+      <mat-form-field [color]="description.valid && 'accent'">
+        <textarea
+          formControlName="description"
+          matInput
+          cdkTextareaAutosize
+          cdkAutosizeMaxRows="4"
+          type="text"
+          placeholder="Description"
+          autocomplete="off"
+        ></textarea>
+        <button mat-button *ngIf="description.value" matSuffix mat-icon-button (click)="description.reset()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-form-field [color]="notes.valid && 'accent'">
+        <textarea
+          formControlName="notes"
+          matInput
+          cdkTextareaAutosize
+          cdkAutosizeMaxRows="4"
+          type="text"
+          placeholder="Notes"
+          autocomplete="off"
+        ></textarea>
+        <button mat-button *ngIf="notes.value" matSuffix mat-icon-button (click)="notes.reset()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+      <app-file-upload></app-file-upload>
+    </section>
+    <section>
+      <div formArrayName="instructions">
+        <div *ngFor="let instructionControl of instructions.controls; let i = index" [formGroupName]="i">
+          <mat-card>
+            <mat-form-field [color]="description.valid && 'accent'">
+              <textarea
+                matInput
+                cdkTextareaAutosize
+                cdkAutosizeMaxRows="4"
+                formControlName="instruction"
+                type="text"
+                placeholder="Instruction"
+                autocomplete="off"
+              ></textarea>
+            </mat-form-field>
+            <button mat-mini-fab color="accent" type="button" (click)="onInsertInstruction(i)">
+              <mat-icon>add</mat-icon>
+            </button>
+            <button mat-mini-fab color="accent" type="button" (click)="onDeleteInstruction(i)">
+              <mat-icon>clear</mat-icon>
+            </button>
+          </mat-card>
+        </div>
+        <button mat-raised-button type="button" class="btn btn-success btn-spacing" (click)="onPushInstruction()">
+          Add Instruction
+        </button>
       </div>
-      <button mat-raised-button type="button" class="btn btn-success btn-spacing" (click)="onPushInstruction()">
-        Add Instruction
-      </button>
-    </div>
-
-    <div formArrayName="ingredients">
-      <div *ngFor="let ingredientControl of ingredients.controls; let i = index" [formGroupName]="i">
-        <mat-card>
-          <mat-form-field [color]="description.valid && 'accent'" class="long-input">
-            <input matInput formControlName="name" type="text" placeholder="Ingredient" autocomplete="off" />
-          </mat-form-field>
-          <mat-form-field [color]="description.valid && 'accent'" class="short-input">
-            <input matInput formControlName="quantity" type="text" placeholder="Quantity" autocomplete="off" />
-          </mat-form-field>
-          <button mat-mini-fab color="accent" type="button" (click)="onInsertIngredient(i)">
-            <mat-icon>add</mat-icon>
-          </button>
-          <button mat-mini-fab color="accent" type="button" (click)="onDeleteIngredient(i)">
-            <mat-icon>clear</mat-icon>
-          </button>
-        </mat-card>
+    </section>
+    <section>
+      <div formArrayName="ingredients">
+        <div *ngFor="let ingredientControl of ingredients.controls; let i = index" [formGroupName]="i">
+          <mat-card>
+            <mat-form-field [color]="description.valid && 'accent'" class="long-input">
+              <input matInput formControlName="name" type="text" placeholder="Ingredient" autocomplete="off" />
+            </mat-form-field>
+            <mat-form-field [color]="description.valid && 'accent'" class="short-input">
+              <input matInput formControlName="quantity" type="text" placeholder="Quantity" autocomplete="off" />
+            </mat-form-field>
+            <button mat-mini-fab color="accent" type="button" (click)="onInsertIngredient(i)">
+              <mat-icon>add</mat-icon>
+            </button>
+            <button mat-mini-fab color="accent" type="button" (click)="onDeleteIngredient(i)">
+              <mat-icon>clear</mat-icon>
+            </button>
+          </mat-card>
+        </div>
+        <button mat-raised-button type="button" class="btn btn-success btn-spacing" (click)="onPushIngredient()">
+          Add Ingredient
+        </button>
       </div>
-      <button mat-raised-button type="button" class="btn btn-success btn-spacing" (click)="onPushIngredient()">
-        Add Ingredient
-      </button>
-    </div>
-    <button mat-raised-button type="submit" [disabled]="!recipeDetailForm.valid">Save</button>
+      <button mat-raised-button type="submit" [disabled]="!recipeDetailForm.valid">Save</button>
+    </section>
   </form>
 </main>
