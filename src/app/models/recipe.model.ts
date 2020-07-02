@@ -9,6 +9,8 @@ export class Recipe {
     public instructions?: string[],
     public ingredients?: (Ingredient | Recipe)[],
     public imagePath?: string,
-    public quantity?: number
+    public quantity?: number,
+    public units?: string,
+    public preparationMethod?: string
   ) {}
 }

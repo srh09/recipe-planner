@@ -54,7 +54,9 @@ export class RecipeDetailComponent implements OnInit {
       index,
       this.formBuilder.group({
         name: this.formBuilder.control(null, [Validators.required]),
-        quantity: this.formBuilder.control(null, [Validators.required])
+        quantity: this.formBuilder.control(null, [Validators.required]),
+        units: this.formBuilder.control(null),
+        preparationMethod: this.formBuilder.control(null)
       })
     )
   }
@@ -83,7 +85,9 @@ export class RecipeDetailComponent implements OnInit {
       ingredientsArray.push(
         this.formBuilder.group({
           name: this.formBuilder.control(ingredient.name, [Validators.required]),
-          quantity: this.formBuilder.control(ingredient.quantity, [Validators.required])
+          quantity: this.formBuilder.control(ingredient.quantity, [Validators.required]),
+          units: this.formBuilder.control(ingredient.units),
+          preparationMethod: this.formBuilder.control(ingredient.preparationMethod)
         })
       )
     }

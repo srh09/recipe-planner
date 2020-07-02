@@ -75,7 +75,19 @@
               <input matInput formControlName="name" type="text" placeholder="Ingredient" autocomplete="off" />
             </mat-form-field>
             <mat-form-field [color]="description.valid && 'accent'" class="short-input">
+              <input
+                matInput
+                formControlName="preparationMethod"
+                type="text"
+                placeholder="Prep Method"
+                autocomplete="off"
+              />
+            </mat-form-field>
+            <mat-form-field [color]="description.valid && 'accent'" class="short-input">
               <input matInput formControlName="quantity" type="text" placeholder="Quantity" autocomplete="off" />
+            </mat-form-field>
+            <mat-form-field [color]="description.valid && 'accent'" class="short-input">
+              <input matInput formControlName="units" type="text" placeholder="Unit" autocomplete="off" />
             </mat-form-field>
             <button mat-mini-fab color="accent" type="button" (click)="onInsertIngredient(i)">
               <mat-icon>add</mat-icon>
