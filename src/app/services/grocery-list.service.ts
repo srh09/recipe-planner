@@ -28,6 +28,14 @@ export class GroceryListService {
     this.emitGroceriesChanged()
   }
 
+  getGroceries() {
+    return this.groceries.slice()
+  }
+
+  saveGroceries() {
+    //Upload max 50 groceries to user grocery list
+  }
+
   deleteGrocery(index: number) {
     this.groceries.splice(index, 1)
     this.emitGroceriesChanged()
@@ -36,10 +44,6 @@ export class GroceryListService {
   deleteGroceries() {
     this.groceries = []
     this.emitGroceriesChanged()
-  }
-
-  saveGroceries() {
-    //Upload max 50 groceries to user grocery list
   }
 
   private emitGroceriesChanged() {

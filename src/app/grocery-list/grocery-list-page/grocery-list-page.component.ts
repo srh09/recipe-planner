@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GroceryListService } from 'src/app/services/grocery-list.service';
+import { Ingredient } from 'src/app/models/ingredient.model';
 
 @Component({
   selector: 'app-grocery-list-page',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GroceryListPageComponent implements OnInit {
 
-  constructor() { }
+  private groceries: Ingredient[] = []
 
-  ngOnInit(): void {
+  constructor(private groceryListService: GroceryListService) { }
+
+  ngOnInit() {
+    this.groceries = this.groceryListService.getGroceries()
   }
 
 }
