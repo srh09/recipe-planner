@@ -1,23 +1,9 @@
-<mat-card >
-  <!-- <mat-card>
-    <mat-form-field [color]="description.valid && 'accent'" class="long-input">
-      <input matInput formControlName="name" type="text" placeholder="Ingredient" autocomplete="off" />
-    </mat-form-field>
-    <mat-form-field [color]="description.valid && 'accent'" class="short-input">
-      <input matInput formControlName="preparationMethod" type="text" placeholder="Prep Method" autocomplete="off" />
-    </mat-form-field>
-    <mat-form-field [color]="description.valid && 'accent'" class="short-input">
-      <input matInput formControlName="quantity" type="text" placeholder="Quantity" autocomplete="off" />
-    </mat-form-field>
-    <mat-form-field [color]="description.valid && 'accent'" class="short-input">
-      <input matInput formControlName="units" type="text" placeholder="Unit" autocomplete="off" />
-    </mat-form-field>
-    <button mat-mini-fab color="accent" type="button" (click)="onInsertIngredient(i)">
-      <mat-icon>add</mat-icon>
-    </button>
-    <button mat-mini-fab color="accent" type="button" (click)="onDeleteIngredient(i)">
-      <mat-icon>clear</mat-icon>
-    </button>
-  </mat-card> -->
+<mat-card>
+  <mat-card-title>Groceries:</mat-card-title>
+  <mat-card *ngFor="let grocery of groceries; let i = index">
+    <mat-card-subtitle>{{ grocery.name }}</mat-card-subtitle>
+    <mat-card-content
+      ><p>{{ grocery.quantity }}: {{ grocery.units }}, {{ grocery.preparationMethod }}</p></mat-card-content
+    >
+  </mat-card>
 </mat-card>
-

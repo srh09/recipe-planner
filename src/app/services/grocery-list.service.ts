@@ -8,7 +8,7 @@ import { Recipe } from "../models/recipe.model"
 })
 export class GroceryListService {
   groceriesChanged = new Subject<Ingredient[]>()
-  private groceries: Ingredient[]
+  private groceries: Ingredient[] = []
 
   constructor() {}
 

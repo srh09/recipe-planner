@@ -5,11 +5,12 @@ import { RecipeDetailComponent } from "./recipe-detail/recipe-detail.component"
 
 const routes: Routes = [
   { path: "", component: PlannerPageComponent },
-  { path: "recipe-detail", component: RecipeDetailComponent },
+  { path: "create", component: RecipeDetailComponent },
+  { path: "recipe/:rIndex", component: RecipeDetailComponent }
 ]
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class PlannerRoutingModule {}
