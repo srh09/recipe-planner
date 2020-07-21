@@ -76,6 +76,10 @@ export class RecipeDetailComponent implements OnInit {
     console.log(this.recipeDetailForm.value)
   }
 
+  onImageAdded(image: string) {
+    this.recipe.imagePath = image
+  }
+
   private initializeRecipeDetailForm() {
     if (this.isEditMode) {
       this.initEditForm(this.rIndex)

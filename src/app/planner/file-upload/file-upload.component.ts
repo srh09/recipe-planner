@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core"
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core"
 import { AngularFireUploadTask } from "@angular/fire/storage/task"
 import { Observable } from "rxjs"
 import { AngularFireStorage } from "@angular/fire/storage"
@@ -17,7 +17,8 @@ export class FileUploadComponent implements OnInit {
     map((result) => result.matches),
     shareReplay()
   )
-  @Input() imageURL: ArrayBuffer | string
+  @Input() imageURL: string
+  @Output() imageAdded = new EventEmitter<string>()
   task: AngularFireUploadTask
   percentage: Observable<number>
   snapshot: Observable<any>
@@ -41,7 +42,12 @@ export class FileUploadComponent implements OnInit {
     this.validateFile(files[0])
     this.fileReader.readAsDataURL(files[0])
     this.fileReader.onload = (event) => {
-      this.imageURL = this.fileReader.result
+      if (typeof this.fileReader.result === "string") {
+        let image = this.fileReader.result
+        this.imageAdded.emit(image)
+      } else {
+        alert("Uh... Why are we getting type ArrayBuffer from this?")
+      }
     }
   }
 

@@ -37,7 +37,7 @@
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
-      <app-file-upload [imageURL]="recipe.imagePath"></app-file-upload>
+      <app-file-upload [imageURL]="recipe.imagePath" (imageAdded)="onImageAdded($event)"></app-file-upload>
     </section>
     <section>
       <div formArrayName="instructions">

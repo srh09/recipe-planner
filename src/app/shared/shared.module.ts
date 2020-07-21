@@ -14,6 +14,7 @@ import { MatFormFieldModule } from "@angular/material/form-field"
 import { MatInputModule } from "@angular/material/input"
 import { MatSnackBarModule } from "@angular/material/snack-bar"
 import { MatProgressBarModule } from "@angular/material/progress-bar"
+import { MatExpansionModule } from "@angular/material/expansion"
 
 import { ShellComponent } from "./shell/shell.component"
 
@@ -35,11 +36,12 @@ const modules = [
   MatInputModule,
   MatSnackBarModule,
   MatProgressBarModule,
+  MatExpansionModule
 ]
 
 @NgModule({
   declarations: [...components, ShellComponent],
   imports: [...modules],
-  exports: [...components, ...modules],
+  exports: [...components, ...modules]
 })
 export class SharedModule {}

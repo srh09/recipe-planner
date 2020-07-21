@@ -1,8 +1,9 @@
-import { Component, OnInit } from "@angular/core"
+import { Component, OnInit, ViewChild } from "@angular/core"
 import { Router, ActivatedRoute } from "@angular/router"
 import { Recipe } from "src/app/models/recipe.model"
 import { RecipeService } from "src/app/services/recipe.service"
 import { GroceryListService } from "src/app/services/grocery-list.service"
+import { MatAccordion } from "@angular/material/expansion"
 
 @Component({
   selector: "app-planner-page",
@@ -10,6 +11,7 @@ import { GroceryListService } from "src/app/services/grocery-list.service"
   styleUrls: ["./planner-page.component.scss"]
 })
 export class PlannerPageComponent implements OnInit {
+  @ViewChild(MatAccordion) accordion: MatAccordion
   recipes: Recipe[] = []
 
   constructor(
